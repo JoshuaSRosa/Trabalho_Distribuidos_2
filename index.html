@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clima & Mapa das Cidades</title>
+
+  <!-- CSS do Leaflet (necessário para o mapa funcionar) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin="" />
+
+  <!-- Nosso CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>🌍 Clima & Mapa das Cidades</h1>
+    <p>Digite o nome de uma cidade para ver o clima, o mapa e uma curiosidade.</p>
+  </header>
+
+  <main>
+    <!-- Campo de busca com autocomplete -->
+    <div class="busca">
+    <div class="busca-input-wrapper">
+        <input type="text" id="input-cidade" placeholder="Ex.: Paris, Tóquio, São Paulo..." autocomplete="off" />
+        <ul id="sugestoes" class="sugestoes escondido"></ul>
+    </div>
+    <button id="btn-buscar">Buscar</button>
+    </div>
+
+    <!-- Mensagem de erro/status -->
+    <p id="status" class="status"></p>
+
+    <!-- Resultados (começam escondidos pelo CSS) -->
+    <section id="resultados" class="escondido">
+      <h2 id="nome-cidade"></h2>
+
+      <div class="grid">
+        <!-- Card do clima -->
+        <div class="card clima">
+          <h3>🌡️ Clima agora</h3>
+          <p><strong>Temperatura:</strong> <span id="temp">--</span> °C</p>
+          <p><strong>Sensação:</strong> <span id="sensacao">--</span> °C</p>
+          <p><strong>Umidade:</strong> <span id="umidade">--</span> %</p>
+          <p><strong>Vento:</strong> <span id="vento">--</span> km/h</p>
+          <p><strong>Condição:</strong> <span id="condicao">--</span></p>
+          <p><strong>Máx. hoje:</strong> <span id="temp-max">--</span> °C</p>
+          <p><strong>Mín. hoje:</strong> <span id="temp-min">--</span> °C</p>
+        </div>
+
+        <!-- Card da curiosidade (Wikipedia) -->
+        <div class="card curiosidade">
+          <h3>📖 Curiosidade</h3>
+          <p id="resumo-wiki">Carregando...</p>
+        </div>
+      </div>
+
+      <!-- Div onde o mapa será desenhado -->
+      <div id="mapa"></div>
+    </section>
+  </main>
+
+  <footer style="text-align: center; font-size: 0.8rem; color: #718096; margin-top: 2rem;">
+    Dados meteorológicos por <a href="https://open-meteo.com/" target="_blank">Open-Meteo</a> (CC BY 4.0)
+  </footer>
+
+  <!-- JS do Leaflet (para o mapa) -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+
+  <!-- Nosso JS (por último, para o Leaflet já estar carregado) -->
+  <script src="script.js"></script>
+</body>
+</html>
